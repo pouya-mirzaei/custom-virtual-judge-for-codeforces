@@ -1,0 +1,59 @@
+@import 'tailwindcss';
+
+/* Custom theme */
+@theme {
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #60a5fa;
+  --color-dark: #1e1e2e;
+  --color-darker: #181825;
+  --color-card: #242438;
+  --color-card-hover: #2a2a42;
+  --color-border: #333355;
+  --color-text: #e0e0f0;
+  --color-text-muted: #9090b0;
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-pending: #a78bfa;
+}
+
+/* Base styles */
+body {
+  @apply bg-darker text-text font-sans antialiased;
+  margin: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-darker;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-text-muted;
+}
+
+/* Problem statement HTML from CF */
+.problem-statement {
+  @apply text-text leading-relaxed;
+}
+.problem-statement .section-title {
+  @apply text-lg font-bold text-primary-light mt-4 mb-2;
+}
+.problem-statement p {
+  @apply mb-2;
+}
+.problem-statement pre {
+  @apply bg-dark p-3 rounded-lg border border-border text-sm font-mono overflow-x-auto;
+}
+.problem-statement .input-specification,
+.problem-statement .output-specification,
+.problem-statement .note {
+  @apply mb-4;
+}
