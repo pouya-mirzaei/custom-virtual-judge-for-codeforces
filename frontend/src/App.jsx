@@ -14,6 +14,7 @@ import SubmissionsPage from './pages/SubmissionsPage';
 import StandingsPage from './pages/StandingsPage';
 import AdminPage from './pages/AdminPage';
 import AdminContestFormPage from './pages/AdminContestFormPage';
+import AdminProblemStatementsPage from './pages/AdminProblemStatementsPage';
 import SubmissionDetailPage from './pages/SubmissionDetailPage';
 
 function GuestRoute({ children }) {
@@ -71,6 +72,7 @@ function App() {
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/admin/contest/new" element={<AdminContestFormPage />} />
               <Route path="/admin/contest/:id/edit" element={<AdminContestFormPage />} />
+              <Route path="/admin/contest/:id/statements" element={<AdminProblemStatementsPage />} />
             </Route>
           </Routes>
         </SocketProvider>

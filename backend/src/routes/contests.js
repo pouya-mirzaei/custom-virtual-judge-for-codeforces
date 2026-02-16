@@ -164,6 +164,38 @@ router.delete('/:id', auth, adminOnly, async (req, res) => {
   }
 });
 
+// PUT /api/contests/:id/problems/:order/statement — update problem custom statement (admin only)
+router.put('/:id/problems/:order/statement', auth, adminOnly, async (req, res) => {
+  try {
+    const { statement } = req.body;
+
+    if (statement === undefined) {
+      return res.status(400).json({ error: 'statement field is required' });
+    }
+
+    const contest = await Contest.findById(req.params.id);
+    if (!contest) {
+      return res.status(404).json({ error: 'Contest not found' });
+    }
+
+    const problem = contest.problems.find((p) => p.order === req.params.order.toUpperCase());
+    if (!problem) {
+      return res.status(404).json({ error: 'Problem not found in contest' });
+    }
+
+    problem.customStatement = statement;
+    await contest.save();
+
+    res.json({ message: 'Problem statement updated', problem });
+  } catch (err) {
+    if (err.name === 'CastError') {
+      return res.status(404).json({ error: 'Contest not found' });
+    }
+    console.error('Update problem statement error:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // POST /api/contests/:id/join — join a contest (authenticated)
 router.post('/:id/join', auth, async (req, res) => {
   try {

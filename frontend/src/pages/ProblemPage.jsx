@@ -53,6 +53,7 @@ export default function ProblemPage() {
   const { id: contestId, order } = useParams();
   const [contest, setContest] = useState(null);
   const [problem, setProblem] = useState(null);
+  const [problemEntry, setProblemEntry] = useState(null); // Contest problem entry with customStatement
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -73,6 +74,8 @@ export default function ProblemPage() {
           setLoading(false);
           return;
         }
+
+        setProblemEntry(entry); // Save the contest problem entry
 
         // 2) Fetch the problem content from cache / CF
         const problemRes = await api.get(`/problems/${entry.contestId}/${entry.problemIndex}`);
@@ -173,6 +176,14 @@ export default function ProblemPage() {
           </span>
         </div>
       </div>
+
+      {/* Custom Statement (if admin added one) */}
+      {problemEntry?.customStatement && (
+        <div className="bg-card border border-border rounded-xl p-6 mb-6">
+          <h2 className="text-lg font-semibold text-text mb-3 pb-3 border-b border-border">Custom Problem Statement</h2>
+          <div className="prose prose-invert max-w-none text-text-muted whitespace-pre-wrap">{problemEntry.customStatement}</div>
+        </div>
+      )}
 
       {/* Problem Statement */}
       {problem?.htmlContent && (

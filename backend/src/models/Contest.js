@@ -8,6 +8,7 @@ const problemSchema = new mongoose.Schema(
     problemName: { type: String, default: '' }, // Cached name
     points: { type: Number, default: 1 }, // Max points
     order: { type: String, required: true }, // Display order: "A", "B", "C"
+    customStatement: { type: String, default: '' }, // Custom problem statement (markdown)
   },
   { _id: false },
 );

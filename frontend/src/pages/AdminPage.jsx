@@ -18,6 +18,7 @@ import {
   AlertCircle,
   Loader2,
   Settings,
+  FileText,
 } from 'lucide-react';
 
 function ContestRow({ contest }) {
@@ -45,13 +46,22 @@ function ContestRow({ contest }) {
       <td className="px-4 py-3 text-sm text-text-muted">{contest.duration}m</td>
       <td className="px-4 py-3 text-sm text-text-muted">{contest.problems?.length || 0}</td>
       <td className="px-4 py-3 text-right">
-        <Link
-          to={`/admin/contest/${contest._id}/edit`}
-          className="inline-flex items-center gap-1 text-text-muted hover:text-primary transition text-sm"
-        >
-          <Edit size={14} />
-          Edit
-        </Link>
+        <div className="flex items-center justify-end gap-3">
+          <Link
+            to={`/admin/contest/${contest._id}/edit`}
+            className="inline-flex items-center gap-1 text-text-muted hover:text-primary transition text-sm"
+          >
+            <Edit size={14} />
+            Edit
+          </Link>
+          <Link
+            to={`/admin/contest/${contest._id}/statements`}
+            className="inline-flex items-center gap-1 text-text-muted hover:text-primary transition text-sm"
+          >
+            <FileText size={14} />
+            Statements
+          </Link>
+        </div>
       </td>
     </tr>
   );
